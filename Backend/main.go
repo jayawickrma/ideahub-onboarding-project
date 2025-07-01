@@ -1,11 +1,13 @@
 package main
 
 import (
+	"Backend/utils"
 	"fmt"
 	"net/http"
 )
 
 func main() {
+	utils.InitMongoDB()
 	fmt.Println("IdeaHUb Backend Server running on port http://localhost:8080")
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
