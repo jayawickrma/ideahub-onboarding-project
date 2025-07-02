@@ -18,15 +18,15 @@ func SaveIdea(idea DTO.IdeaDTO) error {
 	return nil
 }
 
-func removeIdea(id *string) error {
+func RemoveIdea(id string) error {
 	return nil
 }
 
-func putUpdate(idea DTO.IdeaDTO, id *string) error {
+func PutUpdate(idea DTO.IdeaDTO, id string) error {
 	return nil
 }
 
-func viewAllIdeas() error {
+func ViewAllIdeas() error {
 	return nil
 
 }
