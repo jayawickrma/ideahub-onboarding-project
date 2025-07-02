@@ -1,6 +1,9 @@
 package Controller
 
 import (
+	"Backend/DTO"
+	"Backend/Service"
+	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
 	"net/http"
@@ -13,7 +16,19 @@ func NewIdeaController() *IdeaController {
 }
 
 func (ic *IdeaController) CreateIdea(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "🆕 CreateIdea called")
+	var ideaDto DTO.IdeaDTO
+
+	err := json.NewDecoder(r.Body).Decode(&ideaDto)
+	if err != nil {
+		http.Error(w, "Invalid request body", http.StatusBadRequest)
+		return
+	}
+
+	err = Service.SaveIdea(ideaDto)
+	if err != nil {
+		http.Error(w, "Failed to save idea", http.StatusInternalServerError)
+		return
+	}
 }
 
 func (ic *IdeaController) DeleteIdea(w http.ResponseWriter, r *http.Request) {
